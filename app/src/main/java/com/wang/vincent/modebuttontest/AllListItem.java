@@ -1,15 +1,8 @@
 package com.wang.vincent.modebuttontest;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Build;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
-
-import java.util.LinkedList;
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by vincent on 16-9-22.
@@ -17,7 +10,6 @@ import static java.security.AccessController.getContext;
 
 public class AllListItem {
 
-    //private List<Animal> mData = null;
     GetDeviceData getDeviceData = null;
 
     public AllListItem(List<Animal> mData,Context mContext) {
