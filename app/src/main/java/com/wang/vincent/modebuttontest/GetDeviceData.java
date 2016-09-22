@@ -1,7 +1,10 @@
 package com.wang.vincent.modebuttontest;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Environment;
 import android.os.StatFs;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.File;
@@ -73,6 +76,13 @@ public class GetDeviceData {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getScreenResolution(Context con) {
+
+        DisplayMetrics dm = con.getResources().getDisplayMetrics();
+        String strOpt = dm.heightPixels + " * " + dm.widthPixels;
+        return strOpt;
     }
 
 }

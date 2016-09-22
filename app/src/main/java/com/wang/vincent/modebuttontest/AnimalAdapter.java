@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
+import static com.wang.vincent.modebuttontest.R.id.img_icon;
+import static com.wang.vincent.modebuttontest.R.id.txt_aName;
+
 /**
  * Created by vincent on 16-9-22.
  */
@@ -43,13 +46,32 @@ public class AnimalAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, parent, false);
-        ImageView img_icon = (ImageView) convertView.findViewById(R.id.img_icon);
-        TextView txt_aName = (TextView) convertView.findViewById(R.id.txt_aName);
-        TextView txt_aSpeak = (TextView) convertView.findViewById(R.id.txt_aSpeak);
-        img_icon.setBackgroundResource(mData.get(position).getaIcon());
-        txt_aName.setText(mData.get(position).getaName());
-        txt_aSpeak.setText(mData.get(position).getaSpeak());
+        ViewHolder holder = null;
+
+        //第一次的时候加载xml,之后不再加载xml，这样大大提高效率
+        //inflate()每次都要加载一次xml，其实这个convertView是系统提供给我们的可供服用的View 的缓存对象，那就坐下判断咯，修改下，优化后的代码：
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, parent, false);
+            holder = new ViewHolder();
+            holder.imageview = (ImageView) convertView.findViewById(img_icon);
+            holder.txt_aName = (TextView) convertView.findViewById(txt_aName);
+            holder.txt_aSpeak = (TextView) convertView.findViewById(R.id.txt_aSpeak);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.imageview.setBackgroundResource(mData.get(position).getaIcon());
+        holder.txt_aName.setText(mData.get(position).getaName());
+        holder.txt_aSpeak.setText(mData.get(position).getaSpeak());
         return convertView;
     }
+    //下面类用来优化getItem
+    static class ViewHolder {
+        ImageView imageview;
+        TextView txt_aName;
+        TextView txt_aSpeak;
+    }
 }
+
+
