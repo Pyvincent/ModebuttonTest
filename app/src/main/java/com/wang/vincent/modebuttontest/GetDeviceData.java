@@ -1,7 +1,6 @@
 package com.wang.vincent.modebuttontest;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.DisplayMetrics;
