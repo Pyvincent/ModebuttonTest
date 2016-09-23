@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         mContext = MainActivity.this;
-        list_param = (ListView) findViewById(R.id.list_animal);
+        list_param = (ListView) findViewById(R.id.list_param);
         mData = new LinkedList<ParameDev>();
 
         allListItem=new AllListItem(list_param,mData,mContext);

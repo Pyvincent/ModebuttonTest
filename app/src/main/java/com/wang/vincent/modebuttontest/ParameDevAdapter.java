@@ -51,7 +51,7 @@ public class ParameDevAdapter extends BaseAdapter {
         //第一次的时候加载xml,之后不再加载xml，这样大大提高效率
         //inflate()每次都要加载一次xml，其实这个convertView是系统提供给我们的可供服用的View 的缓存对象，那就坐下判断咯，修改下，优化后的代码：
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_animal, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_list_dev_param, parent, false);
             holder = new ViewHolder();
             holder.imageview = (ImageView) convertView.findViewById(img_icon);
             holder.txt_aName = (TextView) convertView.findViewById(txt_aName);
