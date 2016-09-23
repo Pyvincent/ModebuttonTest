@@ -17,12 +17,12 @@ import static com.wang.vincent.modebuttontest.R.id.txt_aName;
  * Created by vincent on 16-9-22.
  */
 
-public class AnimalAdapter extends BaseAdapter {
+public class ParameDevAdapter extends BaseAdapter {
 
-    private LinkedList<Animal> mData;
+    private LinkedList<ParameDev> mData;
     private Context mContext;
 
-    public AnimalAdapter(LinkedList<Animal> mData, Context mContext) {
+    public ParameDevAdapter(LinkedList<ParameDev> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
     }

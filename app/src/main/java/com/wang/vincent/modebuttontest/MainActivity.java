@@ -5,7 +5,6 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -29,13 +28,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     MyBRReceiver myBRReceiver;
     AllListItem allListItem;
-    private List<Animal> mData = null;
+    private List<ParameDev> mData = null;
 
 
     private Context mContext;
-    private AnimalAdapter mAdapter = null;
-    private ListView list_animal;
+    private ParameDevAdapter mAdapter = null;
+    private ListView list_param;
     private LinearLayout ly_content;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -48,23 +48,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         mContext = MainActivity.this;
-        list_animal = (ListView) findViewById(R.id.list_animal);
-        mData = new LinkedList<Animal>();
+        list_param = (ListView) findViewById(R.id.list_animal);
+        mData = new LinkedList<ParameDev>();
 
-        final LayoutInflater inflater=LayoutInflater.from(this);
-        View headView=inflater.inflate(R.layout.head_list,null,false);
-        View footerView=inflater.inflate(R.layout.footer_list,null,false);
+        allListItem=new AllListItem(list_param,mData,mContext);
+        mAdapter = new ParameDevAdapter((LinkedList<ParameDev>) mData, mContext);
 
-        allListItem=new AllListItem(mData,mContext);
-        mAdapter = new AnimalAdapter((LinkedList<Animal>) mData, mContext);
 
-        //添加表头和表尾需要写在setAdapter方法调用之前！！！
-        list_animal.addFooterView(footerView);
-        list_animal.addHeaderView(headView);
-
-        list_animal.setAdapter(mAdapter);
-        list_animal.setOnItemClickListener(this);
-
+        list_param.setAdapter(mAdapter);
+        list_param.setOnItemClickListener(this);
 
         /**
          * 接受mode按键的广播事件
@@ -74,8 +66,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         itFilter.addAction("android.intent.action.ENG_MODE_SWITCH");
         registerReceiver(myBRReceiver, itFilter);
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        /**
+         *  ATTENTION: This was auto-generated to implement the App Indexing API.
+         *  See https://g.co/AppIndexing/AndroidStudio for more information.
+         */
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 

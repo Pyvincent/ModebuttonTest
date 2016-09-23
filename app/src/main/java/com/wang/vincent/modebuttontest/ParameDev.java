@@ -4,15 +4,15 @@ package com.wang.vincent.modebuttontest;
  * Created by vincent on 16-9-22.
  */
 
-public class Animal {
+public class ParameDev {
     private String aName;
     private String aSpeak;
     private int aIcon;
 
-    public Animal() {
+    public ParameDev() {
     }
 
-    public Animal(String aName, String aSpeak, int aIcon) {
+    public ParameDev(String aName, String aSpeak, int aIcon) {
         this.aName = aName;
         this.aSpeak = aSpeak;
         this.aIcon = aIcon;
