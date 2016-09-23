@@ -72,6 +72,24 @@ public class ParameDevAdapter extends BaseAdapter {
         TextView txt_aName;
         TextView txt_aSpeak;
     }
+
+    //添加一行数据
+    public void add(ParameDev data){
+        if(mData == null){
+            mData=new LinkedList<>();
+        }
+        mData.add(data);
+        notifyDataSetChanged();
+    }
+
+    //往特定位置，添加一个元素
+    public void add(int position,ParameDev data){
+        if (mData == null) {
+            mData = new LinkedList<>();
+        }
+        mData.add(position,data);
+        notifyDataSetChanged();
+    }
 }
 
 

@@ -3,6 +3,7 @@ package com.wang.vincent.modebuttontest;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -122,6 +123,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Toast.makeText(mContext,"你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
+
+        if(position==0){
+            mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
+        }
+
 
     }
 }
