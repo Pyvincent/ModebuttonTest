@@ -10,7 +10,7 @@
         android:layout_height="48dp"
         android:background="#43BBEB"
         android:gravity="center"
-        android:text="表尾"
+        android:text="End"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 

@@ -16,18 +16,13 @@ public class AllListItem {
 
         getDeviceData=new GetDeviceData();
 
-
         mData.add(new Animal("系统版本号", Build.DISPLAY, R.mipmap.ic_launcher));
         mData.add(new Animal("CPU", getDeviceData.getCpuName(), R.mipmap.ic_launcher));
         mData.add(new Animal("CPU核心数", "" + getDeviceData.getNumCores(), R.mipmap.ic_launcher));
         mData.add(new Animal("获取rom大小", "" + getDeviceData.getTotalInternalMemorySize(), R.mipmap.ic_launcher));
         mData.add(new Animal("分辨率", getDeviceData.getScreenResolution(mContext), R.mipmap.ic_launcher));
+        mData.add(new Animal("模块版本(getProp)", getDeviceData.getBaseBand(), R.mipmap.ic_launcher));
 
-        mData.add(new Animal("系统版本号", Build.DISPLAY, R.mipmap.ic_launcher));
-        mData.add(new Animal("CPU", getDeviceData.getCpuName(), R.mipmap.ic_launcher));
-        mData.add(new Animal("CPU核心数", "" + getDeviceData.getNumCores(), R.mipmap.ic_launcher));
-        mData.add(new Animal("获取rom大小", "" + getDeviceData.getTotalInternalMemorySize(), R.mipmap.ic_launcher));
-        mData.add(new Animal("分辨率", getDeviceData.getScreenResolution(mContext), R.mipmap.ic_launcher));
     }
 
 

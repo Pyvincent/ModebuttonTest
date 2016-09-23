@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 /**
@@ -82,6 +84,22 @@ public class GetDeviceData {
         DisplayMetrics dm = con.getResources().getDisplayMetrics();
         String strOpt = dm.heightPixels + " * " + dm.widthPixels;
         return strOpt;
+    }
+
+    public String getBaseBand() {
+        InputStream in = null;
+        String cmd="getprop gsm.version.baseband";
+        try {
+            Process pro = Runtime.getRuntime().exec(cmd);
+            pro.waitFor();
+            in = pro.getInputStream();
+            BufferedReader read = new BufferedReader(new InputStreamReader(in));
+            String result = read.readLine();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
