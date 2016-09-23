@@ -90,6 +90,28 @@ public class ParameDevAdapter extends BaseAdapter {
         mData.add(position,data);
         notifyDataSetChanged();
     }
+
+    public void remove(ParameDev data){
+        if(mData!=null){
+            mData.remove(data);
+        }
+        notifyDataSetChanged();
+    }
+    public void remove(int position){
+        if(mData!=null){
+            mData.remove(position);
+        }
+        notifyDataSetChanged();
+
+    }
+    //移除所有列表项
+    public void clear(){
+        if(mData!=null){
+            mData.clear();
+        }
+        notifyDataSetChanged();
+
+    }
 }
 
 

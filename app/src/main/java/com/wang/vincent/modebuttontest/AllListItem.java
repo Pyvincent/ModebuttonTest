@@ -27,7 +27,7 @@ public class AllListItem {
         headView=inflater.inflate(R.layout.head_list,null,false);
         footerView=inflater.inflate(R.layout.footer_list,null,false);
 
-        mData.add(new ParameDev("系统版本号", Build.DISPLAY, R.mipmap.ic_launcher));
+        mData.add(new ParameDev("系统版本号（点击添加到自己后边）", Build.DISPLAY, R.mipmap.ic_launcher));
         mData.add(new ParameDev("CPU", getDeviceData.getCpuName(), R.mipmap.ic_launcher));
         mData.add(new ParameDev("CPU核心数", "" + getDeviceData.getNumCores(), R.mipmap.ic_launcher));
         mData.add(new ParameDev("获取rom大小", "" + getDeviceData.getTotalInternalMemorySize(), R.mipmap.ic_launcher));

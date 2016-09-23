@@ -10,7 +10,7 @@
         android:layout_height="48dp"
         android:background="#43BBEB"
         android:gravity="center"
-        android:text="End"
+        android:text="End（删除一行）"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 

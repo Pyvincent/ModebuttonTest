@@ -3,7 +3,6 @@ package com.wang.vincent.modebuttontest;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -127,6 +126,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(position==0){
             mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
         }
+        if(position==1){
+            mAdapter.add(1,new ParameDev("新行", "新", R.mipmap.ic_launcher));
+        }
+        if(position==mData.size()-1){
+            mAdapter.remove(mData.size()-2);
+        }
+
 
 
     }
