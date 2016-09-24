@@ -10,7 +10,7 @@
         android:layout_height="48dp"
         android:background="#43BBEB"
         android:gravity="center"
-        android:text="系统参数(点击添加一行)"
+        android:text="系统参数(点击添加一行and 跳到Grid页)"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 

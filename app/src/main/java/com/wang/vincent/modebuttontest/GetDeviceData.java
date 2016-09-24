@@ -48,7 +48,7 @@ public class GetDeviceData {
             //Print exception
             Log.d("hehe", "CPU Count: Failed.");
             e.printStackTrace();
-            //Default to return 1 core
+            //Default to return i1 core
             return 1;
         }
     }

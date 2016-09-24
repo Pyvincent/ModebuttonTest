@@ -1,6 +1,7 @@
 package com.wang.vincent.modebuttontest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.wang.vincent.modebuttontest.activity.SlaveActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -123,8 +125,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Toast.makeText(mContext,"你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
 
-        if(position==0){
-            mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
+        if(position==0) {
+            //mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
+            startActivity(new Intent(MainActivity.this, SlaveActivity.class));
         }
         if(position==1){
             mAdapter.add(1,new ParameDev("新行", "新", R.mipmap.ic_launcher));
