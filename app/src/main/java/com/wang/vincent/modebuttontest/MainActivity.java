@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity{
 
     static {
         System.loadLibrary("native-lib");
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         list_param.setAdapter(mAdapter);
-        list_param.setOnItemClickListener(this);
+        list_param.setOnItemClickListener(new MyOnItemClick());
 
         /**
          * 接受mode按键的广播事件
@@ -120,23 +120,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         client.disconnect();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    class MyOnItemClick implements AdapterView.OnItemClickListener{
 
-        Toast.makeText(mContext,"你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(mContext,"你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
 
-        if(position==0) {
-            //mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
-            startActivity(new Intent(MainActivity.this, SlaveActivity.class));
+            if(position==0) {
+                //mAdapter.add(new ParameDev("新行", "新", R.mipmap.ic_launcher));
+                startActivity(new Intent(MainActivity.this, SlaveActivity.class));
+            }
+            if(position==1){
+                mAdapter.add(1,new ParameDev("新行", "新", R.mipmap.ic_launcher));
+            }
+            if(position==mData.size()+1){
+                mAdapter.remove(mData.size()-1);
+            }
         }
-        if(position==1){
-            mAdapter.add(1,new ParameDev("新行", "新", R.mipmap.ic_launcher));
-        }
-        if(position==mData.size()-1){
-            mAdapter.remove(mData.size()-2);
-        }
-
-
-
     }
 }
