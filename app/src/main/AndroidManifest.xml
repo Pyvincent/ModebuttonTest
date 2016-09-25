@@ -16,7 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SlaveActivity"
-            android:label="other activity">
+            android:label="Grid activity">
+
+        </activity>
+        <activity android:name=".activity.HandlerActivity"
+            android:label="Handler activity">
 
         </activity>
 
