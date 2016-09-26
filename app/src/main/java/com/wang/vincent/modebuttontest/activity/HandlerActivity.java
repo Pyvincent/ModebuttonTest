@@ -6,6 +6,7 @@ import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,9 +62,10 @@ public class HandlerActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_handler);
         mContext = HandlerActivity.this;
         imgchange = (ImageView) findViewById(R.id.imgchange);
@@ -77,6 +79,16 @@ public class HandlerActivity extends AppCompatActivity {
             }
         }, 0, 1000);
         imgchange.setOnTouchListener(new MyonTouch());
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     class MyonTouch implements View.OnTouchListener {
