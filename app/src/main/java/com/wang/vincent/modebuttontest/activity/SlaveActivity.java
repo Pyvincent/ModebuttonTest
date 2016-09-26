@@ -35,7 +35,6 @@ public class SlaveActivity extends AppCompatActivity {
     private LinkedList<Vend> mData = null;
 
 
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -47,11 +46,9 @@ public class SlaveActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_slave_land);
-        }
-
-        else if (this.getResources().getConfiguration().orientation ==Configuration.ORIENTATION_PORTRAIT) {
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_slave_portrait);
         }
 
@@ -68,10 +65,10 @@ public class SlaveActivity extends AppCompatActivity {
         mData.add(new Vend(R.mipmap.i7, getResources().getResourceName(R.mipmap.i7).split("/")[1]));
         mData.add(new Vend(R.mipmap.i8, getResources().getResourceName(R.mipmap.i8).split("/")[1]));
         mData.add(new Vend(R.mipmap.i9, getResources().getResourceName(R.mipmap.i9).split("/")[1]));
-        mData.add(new Vend(R.mipmap.i10,getResources().getResourceName(R.mipmap.i10).split("/")[1]));
-        mData.add(new Vend(R.mipmap.i11,getResources().getResourceName(R.mipmap.i11).split("/")[1]));
-        mData.add(new Vend(R.mipmap.i12,getResources().getResourceName(R.mipmap.i12).split("/")[1]));
-        mData.add(new Vend(R.mipmap.i13,getResources().getResourceName(R.mipmap.i13).split("/")[1]));
+        mData.add(new Vend(R.mipmap.i10, getResources().getResourceName(R.mipmap.i10).split("/")[1]));
+        mData.add(new Vend(R.mipmap.i11, getResources().getResourceName(R.mipmap.i11).split("/")[1]));
+        mData.add(new Vend(R.mipmap.i12, getResources().getResourceName(R.mipmap.i12).split("/")[1]));
+        mData.add(new Vend(R.mipmap.i13, getResources().getResourceName(R.mipmap.i13).split("/")[1]));
 
 
         mAdapter = new MyAdapter<Vend>(mData, R.layout.item_grid_icon) {
@@ -85,7 +82,6 @@ public class SlaveActivity extends AppCompatActivity {
 
         gridView.setAdapter(mAdapter);
         gridView.setOnItemClickListener(new MyOnItemClickListener());
-
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -133,17 +129,26 @@ public class SlaveActivity extends AppCompatActivity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(mContext, "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
-           // if(position==0){
-                Intent it1=new Intent(SlaveActivity.this, HandlerActivity.class);
+            if (position == 0) {
+
+                Intent it=getIntent();
                 Bundle bd=new Bundle();
-                bd.putInt("img",mData.get(position).getId());
-                bd.putString("name",mData.get(position).getVendName());
-                it1.putExtras(bd);
-               // startActivity(new Intent(SlaveActivity.this, HandlerActivity.class));
-                startActivity(it1);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-          //  }
+                bd.putInt("imgid",mData.get(position).getId());
+                it.putExtras(bd);
+                setResult(0x123,it);
+                finish();
+            }
+
+            Toast.makeText(mContext, "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
+
+            Intent it1 = new Intent(SlaveActivity.this, HandlerActivity.class);
+            Bundle bd = new Bundle();
+            bd.putInt("img", mData.get(position).getId());
+            bd.putString("name", mData.get(position).getVendName());
+            it1.putExtras(bd);
+            // startActivity(new Intent(SlaveActivity.this, HandlerActivity.class));
+            startActivity(it1);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
     }
 }

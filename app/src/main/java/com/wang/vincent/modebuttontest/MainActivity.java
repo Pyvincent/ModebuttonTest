@@ -1,5 +1,6 @@
 package com.wang.vincent.modebuttontest;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.wang.vincent.modebuttontest.activity.ActivityCollector;
 import com.wang.vincent.modebuttontest.activity.HandlerActivity;
 import com.wang.vincent.modebuttontest.activity.SlaveActivity;
 
@@ -23,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     static {
         System.loadLibrary("native-lib");
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
         list_param = (ListView) findViewById(R.id.list_param);
         mData = new LinkedList<ParameDev>();
 
-        allListItem=new AllListItem(list_param,mData,mContext);
+        allListItem = new AllListItem(list_param, mData, mContext);
         mAdapter = new ParameDevAdapter((LinkedList<ParameDev>) mData, mContext);
 
 
@@ -121,21 +124,57 @@ public class MainActivity extends AppCompatActivity{
         client.disconnect();
     }
 
-    class MyOnItemClick implements AdapterView.OnItemClickListener{
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x1234 && resultCode == 0x123) {
+            Bundle bd = data.getExtras();
+            int imgid = bd.getInt("imgid");
+           // ImageView imageView= (ImageView) findViewById(R.id.img_icon);
+            //imageView.setImageResource(imgid);
+
+            mData.get(0).setaIcon(imgid);
+            mAdapter.notifyDataSetChanged();
+
+
+
+        }
+    }
+
+    class MyOnItemClick implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(mContext,"你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "你点击了第" + position + "项", Toast.LENGTH_SHORT).show();
 
-            if(position==0) {
-                startActivity(new Intent(MainActivity.this, SlaveActivity.class));
+            if (position == 0) {
+                mAdapter.add(1, new ParameDev("新行" + position, "这是一个添加的行", R.mipmap.ic_launcher));
             }
-            if(position==1){
-                mAdapter.add(1,new ParameDev("新行"+position, "这是一个添加的行", R.mipmap.ic_launcher));
+            if (position == 1) {
+
+                Intent it = new Intent(MainActivity.this, SlaveActivity.class);
+                //startActivity(it);
+                startActivityForResult(it, 0x1234);
             }
-            if(position==mData.size()+1){
-                mAdapter.remove(mData.size()-1);
+            if (position == mData.size() + 1) {
+                mAdapter.remove(mData.size() - 1);
             }
         }
+
     }
+
+    //杀死所有activity ，杀死app
+    public void AppExit(Context context){
+        try {
+            ActivityCollector.finishAll();
+            ActivityManager activityManager= (ActivityManager) context.getSystemService(
+                    Context.ACTIVITY_SERVICE
+            );
+            activityManager.killBackgroundProcesses(context.getPackageName());
+            System.exit(0);
+        }catch (Exception ignord){
+
+        }
+    }
+
 }
