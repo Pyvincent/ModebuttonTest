@@ -4,28 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.wang.vincent.modebuttontest.MainActivity;
 import com.wang.vincent.modebuttontest.R;
 import com.wang.vincent.modebuttontest.adapter.MyAdapter;
 import com.wang.vincent.modebuttontest.databean.Vend;
 
 import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
