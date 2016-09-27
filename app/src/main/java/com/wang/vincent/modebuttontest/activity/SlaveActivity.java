@@ -56,7 +56,7 @@ public class SlaveActivity extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.grid_vend);
 
         mData = new LinkedList<Vend>();
-        mData.add(new Vend(R.mipmap.i1, getResources().getResourceName(R.mipmap.i1).split("/")[1]));
+        mData.add(new Vend(R.mipmap.i1, "Helloworld"+getResources().getResourceName(R.mipmap.i1).split("/")[1]));
         mData.add(new Vend(R.mipmap.i2, getResources().getResourceName(R.mipmap.i2).split("/")[1]));
         mData.add(new Vend(R.mipmap.i3, getResources().getResourceName(R.mipmap.i3).split("/")[1]));
         mData.add(new Vend(R.mipmap.i4, getResources().getResourceName(R.mipmap.i4).split("/")[1]));

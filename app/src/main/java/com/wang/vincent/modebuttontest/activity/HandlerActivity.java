@@ -12,6 +12,9 @@ import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.wang.vincent.modebuttontest.R;
+import com.wang.vincent.modebuttontest.jumpingbeans.JumpingBeans;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -46,6 +50,7 @@ public class HandlerActivity extends AppCompatActivity {
     private PointF startPoint = new PointF();
     private PointF midPoint = new PointF();
     private double oriDis = 1f;
+    private JumpingBeans jumpingBeans1,jumpingBeans2;
 
 
     int imgid[] = new int[]{
@@ -84,6 +89,10 @@ public class HandlerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_handler);
         mContext = HandlerActivity.this;
         other_icon = (TextView) findViewById(R.id.other_icon);
+
+
+
+
         imgchange = (ImageView) findViewById(R.id.imgchange);
 
 
@@ -93,6 +102,38 @@ public class HandlerActivity extends AppCompatActivity {
         String name = bd.getString("name");
         imgchange.setImageResource(img);
         other_icon.setText(name);
+
+
+        //摇摆
+        TranslateAnimation alphaAnimation2 = new TranslateAnimation(150f, 350f, 50, 50);
+        alphaAnimation2.setDuration(1000);
+        alphaAnimation2.setRepeatCount(Animation.INFINITE);
+        alphaAnimation2.setRepeatMode(Animation.REVERSE);
+        imgchange.setAnimation(alphaAnimation2);
+        alphaAnimation2.start();
+
+         /*
+        //闪烁
+        AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);
+        alphaAnimation1.setDuration(3000);
+        alphaAnimation1.setRepeatCount(Animation.INFINITE);
+        alphaAnimation1.setRepeatMode(Animation.REVERSE);
+        imgchange.setAnimation(alphaAnimation1);
+        alphaAnimation1.start();
+
+         jumpingBeans2 = JumpingBeans.with(other_icon)
+                .makeTextJump(0, other_icon.getText().toString().indexOf(' '))
+                .setIsWave(false)
+                .setLoopDuration(1000)
+                .build();
+         */
+
+
+
+        jumpingBeans1 = JumpingBeans.with(other_icon)
+                .appendJumpingDots()
+                .build();
+
 
         /*
 
@@ -152,6 +193,12 @@ public class HandlerActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        jumpingBeans1.stopJumping();
     }
 
     @Override
@@ -228,3 +275,52 @@ public class HandlerActivity extends AppCompatActivity {
         return new PointF(x / 2, y / 2);
     }
 }
+/**
+ * intent传递复杂数据。
+ * 传递复杂些的参数
+ * Map<String, Object> map1 = new HashMap<String, Object>();
+ * map1.put("key1", "value1");
+ * map1.put("key2", "value2");
+ * List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+ * list.add(map1);
+ * <p>
+ * Intent intent = new Intent();
+ * intent.setClass(MainActivity.this,ComplexActivity.class);
+ * Bundle bundle = new Bundle();
+ * <p>
+ * //须定义一个list用于在budnle中传递需要传递的ArrayList<Object>,这个是必须要的
+ * ArrayList bundlelist = new ArrayList();
+ * bundlelist.add(list);
+ * bundle.putParcelableArrayList("list",bundlelist);
+ * intent.putExtras(bundle);
+ * startActivity(intent);
+ * <p>
+ * 1）List<基本数据类型或String>
+ * 写入集合：
+ * intent.putStringArrayListExtra(name, value)
+ * intent.putIntegerArrayListExtra(name, value)
+ * 读取集合：
+ * intent.getStringArrayListExtra(name)
+ * intent.getIntegerArrayListExtra(name)
+ * <p>
+ * 2）List< Object>
+ * 将list强转成Serializable类型,然后传入(可用Bundle做媒介)
+ * 写入集合：
+ * putExtras(key, (Serializable)list)
+ * 读取集合：
+ * (List<Object>) getIntent().getSerializable(key)
+ * PS:Object类需要实现Serializable接口
+ * <p>
+ * 写入数组：
+ * bd.putStringArray("StringArray", new String[]{"呵呵","哈哈"});
+ * //可把StringArray换成其他数据类型,比如int,float等等...
+ * 读取数组：
+ * String[] str = bd.getStringArray("StringArray")
+ * <p>
+ * <p>
+ * Bitmap bitmap = null;
+ * Intent intent = new Intent();
+ * Bundle bundle = new Bundle();
+ * bundle.putParcelable("bitmap", bitmap);
+ * intent.putExtra("bundle", bundle);
+ */

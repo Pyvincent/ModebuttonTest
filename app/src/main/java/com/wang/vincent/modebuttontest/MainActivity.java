@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent it = new Intent(MainActivity.this, SlaveActivity.class);
                 //startActivity(it);
-                startActivityForResult(it, 0x1234);
+                 startActivityForResult(it, 0x1234);
             }
             if (position == mData.size() + 1) {
                 mAdapter.remove(mData.size() - 1);
