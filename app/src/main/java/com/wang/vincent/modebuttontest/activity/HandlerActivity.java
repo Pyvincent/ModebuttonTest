@@ -6,13 +6,10 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -24,9 +21,6 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.wang.vincent.modebuttontest.R;
 import com.wang.vincent.modebuttontest.jumpingbeans.JumpingBeans;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by vincent on 16-9-25.
@@ -88,12 +82,9 @@ public class HandlerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_handler);
         mContext = HandlerActivity.this;
-        other_icon = (TextView) findViewById(R.id.other_icon);
+//        other_icon = (TextView) findViewById(R.id.other_icon);
 
-
-
-
-        imgchange = (ImageView) findViewById(R.id.imgchange);
+//        imgchange = (ImageView) findViewById(R.id.imgchange);
 
 
         Intent it2 = getIntent();
